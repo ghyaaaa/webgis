@@ -65,6 +65,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new CopyWebpackPlugin([ { from: path.join(cesiumSource, cesiumWorkers), to: 'Workers' } ]),
     new CopyWebpackPlugin([ { from: path.join(cesiumSource, 'Assets'), to: 'Assets' } ]),
     new CopyWebpackPlugin([ { from: path.join(cesiumSource, 'Widgets'), to: 'Widgets' } ]), 
+    new webpack.DefinePlugin({
+	CESIUM_BASE_URL: JSON.stringify('')
+	}),
+	
     // copy custom static assets
     new CopyWebpackPlugin([
       {
