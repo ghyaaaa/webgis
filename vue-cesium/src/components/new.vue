@@ -193,16 +193,17 @@ export default {
 					
 					break;
 				case '贴地距离':
-					window.Map.drawTool.startDraw({
-						type: 'polyline',
-						style: {
-							material: Cesium.Color.YELLOW,
-							clampToGround: true
-						},
-						success: function (evt) {
+					// window.Map.drawTool.startDraw({
+					// 	type: 'polyline',
+					// 	style: {
+					// 		material: Cesium.Color.YELLOW,
+					// 		clampToGround: true
+					// 	},
+					// 	success: function (evt) {
 
-						}	
-					});
+					// 	}	
+					// });
+					window.Map.measure.startDraw();
 					break;
 			}
 		}

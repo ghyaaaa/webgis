@@ -98,7 +98,8 @@ export default {
     },
     clickDistance(){
         //量算工具
-        window.Map.measureDistance();
+        // window.Map.measureDistance();
+        window.Map.primitiveLine();
     },
   }
 }

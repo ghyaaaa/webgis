@@ -13,7 +13,7 @@ var CreatePolyline = function (viewer, style) {
     this.modifyPoint = null;
     this.state = 0;
     //初始化鼠标提示框
-    this.prompt = new MovePrompt(viewer);
+    // this.prompt = new MovePrompt(viewer);
 	
 }
 CreatePolyline.prototype = {
@@ -162,19 +162,34 @@ CreatePolyline.prototype = {
     },
     createPolyline: function () {
         var that = this;
-        var polyline = this.viewer.entities.add({
-            polyline: {
-                positions: new Cesium.CallbackProperty(function () {
-                    return that.positions
-                }, false),
-                show: true,
-                material: this.style.material || Cesium.Color.YELLOW,
-                width: this.style.width || 3,
-                clampToGround: this.style.clampToGround == undefined ? false : true
-            }
-        });
-        polyline.objId = this.objId;
-        console.log(this.objId);
+        // var polyline = this.viewer.entities.add({
+        //     polyline: {
+        //         positions: new Cesium.CallbackProperty(function () {
+        //             return that.positions
+        //         }, false),
+        //         show: true,
+        //         material: this.style.material || Cesium.Color.YELLOW,
+        //         width: this.style.width || 3,
+        //         clampToGround: this.style.clampToGround == undefined ? false : true
+        //     }
+        // });
+        // polyline.objId = this.objId;
+        // console.log(this.objId);
+        // return polyline;
+        //primitive
+        var instance = new Cesium.GeometryInstance({
+            geometry: new Cesium.PolylineGeometry({
+                position: Cesium.Cartesian3.fromDegreesArray(position),
+                width : 10.0
+            }),
+            id: this.objId
+        })
+        let polyline = this.viewer.scene.primitives.add(new Cesium.Primitive({
+            geometryInstances: instance,
+            appearance : new Cesium.EllipsoidSurfaceAppearance({
+                material : Cesium.Material.fromType('Checkerboard')
+            })
+        }))
         return polyline;
     },
     getPositions: function () {

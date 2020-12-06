@@ -17,9 +17,9 @@ var DrawTool = function (obj) {
 DrawTool.prototype = {
 	startDraw: function (opt) {
 		var that = this;
-		// if (this.hasEdit) {
-		// 	 this.bindEdit();
-		// }
+		if (this.hasEdit) {
+			 this.bindEdit();
+		}
 		if (opt.type == "polyline") {
 			var polyline = new CreatePolyline(this.viewer, opt.style);
 			polyline.start(function (evt) {
